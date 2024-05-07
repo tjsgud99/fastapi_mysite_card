@@ -17,9 +17,9 @@ data = {
     "grant_type" : "authorization_code",
     "client_id" : "671934a076b2386de0d1673885c05e26",         # RESTAPI KEY
     "redirect_uri": "http://127.0.0.1:8000",
-    "code": "TEL0QcFadhwFPOk1r4tMsRbZ5XmShKy2Rug3pKA0lctTeNpW6tLvRwTvG3YKPXWcAAABjuTlMCESmUam6ZdnFg"
+    "code": "eTeeWTylFoUjPZHTqeo47QncQOYkK8grue8c_UA3-NSkKmZAtethOUaXKyEKPXMXAAABj1Ej6ZMtjdRiIM79qQ"
 }
-
+print(data)
 # response = requests.post(url, data=data)
 # tokens = response.json()
 # print(tokens)
