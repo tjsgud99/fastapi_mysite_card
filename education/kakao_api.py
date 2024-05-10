@@ -17,29 +17,29 @@ data = {
     "grant_type" : "authorization_code",
     "client_id" : "671934a076b2386de0d1673885c05e26",         # RESTAPI KEY
     "redirect_uri": "http://127.0.0.1:8000",
-    "code": "eTeeWTylFoUjPZHTqeo47QncQOYkK8grue8c_UA3-NSkKmZAtethOUaXKyEKPXMXAAABj1Ej6ZMtjdRiIM79qQ"
+    "code": "FYld0dgtPw9JRlQcNp6rIMJTzWotlWQzN7LNIau0iGwLuK3jnYpN-TuTNNIKKwyoAAABj1E6DX3SDh85zpcCzQ"
 }
 print(data)
-# response = requests.post(url, data=data)
-# tokens = response.json()
-# print(tokens)
+response = requests.post(url, data=data)
+tokens = response.json()
+print(tokens)
 
 # 3.토큰 이용해서 나에게 톡 보내기
-access_token = "kF2ClmP4DKCfK1paTEt5g6D3ly07UYU0B9IKPXTZAAABjuTlw0HRDLJpR7eCqA"
+# access_token = "kF2ClmP4DKCfK1paTEt5g6D3ly07UYU0B9IKPXTZAAABjuTlw0HRDLJpR7eCqA"
 
-msg_url = "https://kapi.kakao.com/v2/api/talk/memo/default/send"
-headers = {
-    "Authorization": "Bearer " + access_token
-}
-msg_data = {
-    "template_object": json.dumps({
-        "object_type": "text",
-        "text": "카카오톡 테스트",
-        "link": {"mobile_web_url" : "https://www.naver.com"}
-    })
-}
+# msg_url = "https://kapi.kakao.com/v2/api/talk/memo/default/send"
+# headers = {
+#     "Authorization": "Bearer " + access_token
+# }
+# msg_data = {
+#     "template_object": json.dumps({
+#         "object_type": "text",
+#         "text": "카카오톡 테스트",
+#         "link": {"mobile_web_url" : "https://www.naver.com"}
+#     })
+# }
 
-response = requests.post(msg_url, headers=headers, data=msg_data)
+# response = requests.post(msg_url, headers=headers, data=msg_data)
 
 
 

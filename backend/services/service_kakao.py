@@ -29,11 +29,11 @@ class KakaoService:
         print(tokens)
           
         
-
         # 발급받은 토큰 kakao_code.json에 저장
         with open(r"./kakao_code.json", "w") as fp:
             json.dump(tokens,fp)
-        return tokens       
+        return tokens
+           
     # Access Token 재발급(+ Refresh Token)    
     def refresh_access_token(self):
         # kakao_code.json 파일에서 token 불러오기
@@ -85,11 +85,22 @@ class KakaoService:
             #        kakao_code.json에 저장
             tokens = self.get_first_token()
 
-        # 2. Access Token을 사용해서 나에게 카카오톡 보내기
+        # kakao_code.json 유무와 상관없이 토큰(Access, Refresh) 보유
+    access_token = "kF2ClmP4DKCfK1paTEt5g6D3ly07UYU0B9IKPXTZAAABjuTlw0HRDLJpR7eCqA"
+    msg_url = "https://kapi.kakao.com/v2/api/talk/memo/default/send"
+    headers = {
+                 "Authorization": "Bearer " + access_token
+    }
+    msg_data = {
+             "template_object": json.dumps({
+            "object_type": "text",
+            "text": f"이름: {msg.name} \n메일: {msg.email} \n메시지: {msg.message}",
+            "link": {"mobile_web_url" : "https://127.0.0.1:8000"}
+        })
+    }
 
-        # 3. DB에 저장
-
-        # +. 스케줄러 등록(Refresh Token 재발급)
-        # - Refresh Token은 유효기간 2달
-        # - 그리고 발급받은 날짜로부터 1달 후 재발급 가능
-        # - 스케줄러 -> 1달에 한번씩 Refresh Token을 재발급 받으세요!
+    response = requests.post(msg_url, headers=headers, data=msg_data)
+    if response.json().get("result_code") == 0:
+            print("메시지를 성공적으로 보냈습니다.")
+    else:
+            print("메시지를 보내는데 실패했습니다. Error" + str(response.json()))
