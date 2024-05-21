@@ -166,21 +166,12 @@ function view_human(txt) {  // 사용자 메세지 챗 디자인
  
 
 document.querySelector("#send_chat_btn").onclick = function() {
-
     var txt = document.querySelector("#send_chat_input").value;
-
     if (txt.length != 0 || txt != "") {
-
         send_chat_server(txt)
-
     } else {
-
         console.log("메세지를 입력해주세요.")
-
     }
-
- 
-
 };
 
  
@@ -260,7 +251,7 @@ function moveScroll () {
  
 
 function send_chat_server(txt) {
-
+    // 입력창 clear 
     document.querySelector("#send_chat_input").value = "";
 
     // 사용자 챗(질문) 출력
@@ -282,39 +273,23 @@ function send_chat_server(txt) {
     if (txt.length > 0 || txt != "") {
 
         $.ajax({
-
             url: "/chat/",
-
             data: JSON.stringify({"question": txt}),
-
             type: "POST",
-
             contentType: "application/json; charset=UTF-8",
-
             dataType: "json",
-
             success: function(data) {
-
                 console.log(data["answer"]);
-
                 chat_box.insertAdjacentHTML("beforeend", view_chatbot(data["answer"]))
-
                 moveScroll()
-
             },
 
             error: function(data){
-
                 console.log(data); 
-
             }
-
         });
 
     } else {
-
         console.log("문자열을 입력해주세요.");
-
     }
-
 }
