@@ -9,3 +9,4 @@ apscheduler
 langchain_openai
 langchain
 langchain_community
+pydef
